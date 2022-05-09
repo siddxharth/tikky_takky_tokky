@@ -1,4 +1,3 @@
-import { set } from "countapi-js";
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
