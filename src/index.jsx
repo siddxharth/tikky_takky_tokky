@@ -11,14 +11,14 @@ const Board = () => {
     
     const handleClickEvent = (i) => {
         const newSquares = [...squares];
-
+        
         const winnerDeclared = Boolean(calculateWinner(newSquares));
         const squareFilled = Boolean(newSquares[i]);
         
         if(winnerDeclared || squareFilled){
             return;
         }
-        
+
         newSquares[i] = xIsNext?'X':'O';
         setSquares(newSquares);
         setIsNext(!xIsNext);
@@ -28,7 +28,7 @@ const Board = () => {
     const status = winner ? 
     `Player ${winner} wins!` : 
     xIsNext? 'Player X turn': 'Player O turn';
-    
+
     const renderSquare = (i) => {
         return (
             <Square value={squares[i]}
@@ -83,7 +83,7 @@ function calculateWinner(squares){
     for(let line of lines){
         const [a, b, c] = line;
 
-        if(squares[a] && squares[a] == squares[b] && squares[b] == squares[c]){
+        if(squares[a] && squares[a] === squares[b] && squares[b] === squares[c]){
             return squares[a]; //'X' or 'O'
         }
     }
