@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client"
 import "./index.css";
 
 const Board = () => {
@@ -24,6 +24,7 @@ const Board = () => {
     }
     
     const winner = calculateWinner(squares);
+
     const status = winner ? 
     `Player ${winner} wins!` : 
     xIsNext? 'Player X turn': 'Player O turn';
@@ -37,16 +38,18 @@ const Board = () => {
 
     return (
         <div className="board">
-            <div className="status">{status}</div>
-                <div className="board-row">
-                {renderSquare(0)}{renderSquare(1)}{renderSquare(2)}
-                </div>
-                <div className="board-row">
-                {renderSquare(3)}{renderSquare(4)}{renderSquare(5)}
-                </div>
-                <div className="board-row">
-                {renderSquare(6)}{renderSquare(7)}{renderSquare(8)}
-                </div>
+            <div className="status">
+                {status}
+            </div>
+            <div className="board-row">
+            {renderSquare(0)}{renderSquare(1)}{renderSquare(2)}
+            </div>
+            <div className="board-row">
+            {renderSquare(3)}{renderSquare(4)}{renderSquare(5)}
+            </div>
+            <div className="board-row">
+            {renderSquare(6)}{renderSquare(7)}{renderSquare(8)}
+            </div>
         </div>
     );
 }
@@ -68,9 +71,9 @@ const Game = () => {
     );
 }
 
-ReactDOM.render(
-    <Game />, document.getElementById("root")
-);
+const container = document.getElementById("root")
+const root = createRoot(container)
+root.render(<Game />)
 
 function calculateWinner(squares){
     const lines = [
